@@ -54,6 +54,9 @@
     right: 15px;
     width: 45px;
     height: 45px;
+    bottom: 20px;
+    top: auto;
+    transform: none;
   }
   
   .icon {
@@ -67,6 +70,9 @@
     right: 10px;
     width: 40px;
     height: 40px;
+    bottom: 10px;
+    top: auto;
+    transform: none;
   }
   
   .icon {

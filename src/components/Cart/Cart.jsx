@@ -48,6 +48,12 @@ export default function Cart() {
         >
           Delete All Products
         </button>
+        <button
+          onClick={() => navigate('/products')}
+          className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-bold py-2 px-5 rounded-xl shadow-md ml-2"
+        >
+          Continue Shopping
+        </button>
       </div>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

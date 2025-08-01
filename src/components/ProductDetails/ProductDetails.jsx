@@ -74,13 +74,13 @@ export default function ProductDetails() {
         </div>
         <div>
           <h2 className='text-2xl font-bold'>{productDetails?.title}</h2>
-          <p className='text-gray-500'>{productDetails?.category?.name}</p>
-          <p className='text-gray-700 mt-2'>{productDetails?.description}</p>
+          <p className='text-secondary'>{productDetails?.category?.name}</p>
+          <p className='text-secondary mt-2'>{productDetails?.description}</p>
           <p className='text-lg font-semibold mt-2'>{productDetails?.price} EGP</p>
           <p className='text-red-500 mt-2'>
             {productDetails?.priceAfterDiscount ? `Discounted Price: ${productDetails?.priceAfterDiscount} EGP` : 'No Discount'}
           </p>
-          <p className='text-gray-600 mt-2'>
+          <p className='text-secondary mt-2'>
             Rating: <i className="fa-solid fa-star text-yellow-400"></i> {productDetails?.ratingsAverage} ({productDetails?.ratingsQuantity} reviews)
           </p>
         </div>
@@ -166,8 +166,8 @@ export default function ProductDetails() {
               </span>
             </div>
             {product.priceAfterDiscount ? (
-              <span className="absolute top-5 left-2 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-sm">
-                Sale
+              <span className="absolute top-5 left-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10">
+                SALE
               </span>
             ) : null}
             <button 

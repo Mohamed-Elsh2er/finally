@@ -24,11 +24,11 @@ function logout() {
     </div>
     <div className="flex items-center gap-6">
       <Link to="/home" className="hover:text-[var(--accent)] transition">Home</Link>
-      <Link to="/Cart" className="hover:text-[var(--accent)] transition flex items-center">
+      <Link to="/Cart" className="hover:text-[var(--accent)] transition flex items-center" aria-label="Cart">
         <i className="fa fa-shopping-cart mr-1"></i> Cart
         {numOfCartItems > 0 && <span className="ml-1 bg-[var(--accent)] text-white rounded-full px-2 text-xs">{numOfCartItems}</span>}
       </Link>
-      <Link to="/Wish" className="hover:text-[var(--accent)] transition flex items-center">
+      <Link to="/Wish" className="hover:text-[var(--accent)] transition flex items-center" aria-label="Wish">
         <i className="fa fa-heart mr-1"></i> Wish
         {numOfWishlistItems > 0 && <span className="ml-1 bg-[var(--accent)] text-white rounded-full px-2 text-xs">{numOfWishlistItems}</span>}
       </Link>

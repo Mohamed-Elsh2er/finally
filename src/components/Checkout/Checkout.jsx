@@ -92,14 +92,14 @@ export default function Checkout() {
           <button
             type="button"
             onClick={handleCOD}
-            className="w-1/2 bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg"
+            className="w-1/2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white py-2 rounded-lg"
           >
             Cash on Delivery
           </button>
           <button
             type="button"
             onClick={handleStripe}
-            className="w-1/2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg"
+            className="w-1/2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white py-2 rounded-lg"
           >
             Pay with Card
           </button>

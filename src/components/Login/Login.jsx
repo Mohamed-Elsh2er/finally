@@ -61,6 +61,17 @@ export default function Login() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [resetStep, setResetStep] = useState(1);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const passwordRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+
+  function validateResetPassword() {
+    if (!newPassword) return 'New password is required.';
+    if (!passwordRules.test(newPassword)) return 'Password must be at least 8 characters, include uppercase, lowercase, number, and special character.';
+    if (newPassword !== confirmPassword) return 'Passwords do not match.';
+    return '';
+  }
 
   async function handleForgotPassword() {
     setForgotMsg(null);
@@ -209,6 +220,12 @@ export default function Login() {
         >
           Forgot Password?
         </button>
+        <div className="mt-6 text-center">
+          <span className="text-gray-600">Don't have an account?</span>
+          <button type="button" className="ml-2 text-[var(--accent)] underline" onClick={() => navigate('/register')}>
+            Register
+          </button>
+        </div>
 
         {showResetForm && (
           <div className="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200">
@@ -266,28 +283,55 @@ export default function Login() {
                 <p className="text-sm text-gray-600 mb-4">
                   Enter your new password.
                 </p>
-                <input
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="New password"
-                  className="w-full mb-4 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 p-2.5"
-                />
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm new password"
-                  className="w-full mb-4 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 p-2.5"
-                />
+                <div className="relative mb-4">
+                  <input
+                    type={showNewPassword ? "text" : "password"}
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="New password"
+                    className="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 p-2.5"
+                    autoComplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    className="absolute right-3 top-2 text-gray-500 text-xs"
+                    onClick={() => setShowNewPassword((prev) => !prev)}
+                    aria-label={showNewPassword ? "Hide password" : "Show password"}
+                  >
+                    {showNewPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
+                <div className="relative mb-4">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm new password"
+                    className="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 p-2.5"
+                    autoComplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    className="absolute right-3 top-2 text-gray-500 text-xs"
+                    onClick={() => setShowConfirmPassword((prev) => !prev)}
+                    aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                  >
+                    {showConfirmPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
+                {validateResetPassword() && (
+                  <div className="text-red-500 text-xs mb-2">{validateResetPassword()}</div>
+                )}
                 <button
                   type="button"
                   onClick={handleResetPassword}
-                  disabled={!newPassword || !confirmPassword || forgotLoading}
+                  disabled={!newPassword || !confirmPassword || forgotLoading || !!validateResetPassword()}
                   className={`
                     w-full border border-green-700 rounded-lg px-4 py-2 transition
                     bg-green-700 text-white hover:bg-green-800
-                    ${!newPassword || !confirmPassword || forgotLoading ? 'opacity-60 cursor-not-allowed' : ''}
+                    ${!newPassword || !confirmPassword || forgotLoading || !!validateResetPassword() ? 'opacity-60 cursor-not-allowed' : ''}
                   `}
                 >
                   {forgotLoading ? 'Resetting...' : 'Reset Password'}

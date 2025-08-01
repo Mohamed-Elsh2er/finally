@@ -25,33 +25,34 @@ export default function MainSlider() {
   }
 
   return (
-    <div className="flex items-center justify-center bg-gray-100 w-[75vh] h-[50vh] m-auto">
+    <div className="flex items-center justify-center bg-gray-100 w-full" style={{height: '50vh', minHeight: 250}}>
       <div
-        className="grid grid-cols-[2fr_1fr] gap-3 p-3 rounded-xl overflow-hidden bg-white shadow-md"
-        style={{ height: '50vh', width: '75vh' }}
+        className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-3 p-3 rounded-xl overflow-hidden bg-white shadow-md w-full max-w-4xl h-full min-h-0"
+        style={{height: '100%'}}
       >
-        <div className="h-full w-full overflow-hidden rounded-lg">
-          <Slider {...settings}>
+        <div className="h-full w-full min-h-0 overflow-hidden rounded-lg flex flex-col">
+          <Slider {...settings} className="h-full w-full min-h-0">
             {sliderImages.map((img, index) => (
-              <div key={index}>
+              <div key={index} className="h-full w-full min-h-0 flex">
                 <img
                   src={img}
                   alt={`Slide ${index + 1}`}
-                  className="h-full w-full object-cover rounded-lg"
-                  style={{ height: '50vh', width: '100%' }}
+                  className="h-full w-full min-h-0 object-cover rounded-lg"
+                  style={{height: '100%', width: '100%'}}
                 />
               </div>
             ))}
           </Slider>
         </div>
 
-        <div className="h-full w-full flex flex-col gap-3">
+        <div className="h-full w-full min-h-0 flex flex-col gap-3">
           {rightImages.map((img, index) => (
-            <div key={index} className="h-1/2 w-full overflow-hidden rounded-lg">
+            <div key={index} className="flex-1 min-h-0 w-full overflow-hidden rounded-lg flex">
               <img
                 src={img}
                 alt={`Static ${index + 4}`}
-                className="h-full w-full object-cover rounded-lg"
+                className="h-full w-full min-h-0 object-cover rounded-lg"
+                style={{height: '100%', width: '100%'}}
               />
             </div>
           ))}

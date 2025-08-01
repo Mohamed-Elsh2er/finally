@@ -110,7 +110,7 @@ export default function DisplayProductss() {
   }
 
   return (
-    <div className='praent grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+    <div className='praent grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
       {Array.isArray(product) && product.length > 0 ? (
         product.map((product) => (
           <div
